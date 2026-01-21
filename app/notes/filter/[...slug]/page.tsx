@@ -3,6 +3,10 @@
 // Constants
 import TAGS from "@/constants/noteTags";
 
+
+// Next.js
+import Link from "next/link";
+
 import { notFound } from "next/navigation";
 import type { NoteTag } from "@/types/note";
 
@@ -29,6 +33,7 @@ const NotesByCategory = async ({ params }: { params: Promise<NotesByCategoryPara
   return (
     <div>
       <h1>Notes List</h1>
+      <Link href="/notes/123">Open note 123</Link>;
     </div>
   );
 };
