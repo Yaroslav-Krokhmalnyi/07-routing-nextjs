@@ -82,27 +82,27 @@ export async function fetchNoteById(id: string): Promise<Note> {
   return response.data;
 }
 
+export async function getCategories({
+  page,
+  perPage,
+  search,
+  tag,
+  sortBy = "created",
+}: FetchNotesParams): Promise<FetchNotesResponse> {
+  const params = {
+    page,
+    perPage,
+    ...(search && search.trim() ? { search: search.trim() } : {}),
+    ...(tag ? { tag } : {}),
+    ...(sortBy ? { sortBy } : {}),
+  };
 
-
-
-export const getNotes = async (categoryId?: string) => {
-  const res = await axiosInstance.get<FetchNotesResponse>("/notes", {
-    params: { categoryId },
+  const response = await axiosInstance.get<FetchNotesResponse>("/notes", {
+    params,
+    headers: getAuthHeaders(),
   });
-  return res.data;
-};
+  console.log(response.data);
 
-export const getCategories = async () => {
-  const res = await fetchNotes({
-  page: 2,
-  perPage: 10,
-  search: 'the',
-  tag: 'Todo',
-  sortBy: "created"});
-  console.log(res);
-  
-  return res;
-};
-
-
+  return response.data;
+}
 
