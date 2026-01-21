@@ -11,8 +11,6 @@ interface ModalProps {
 }
 
 export default function Modal({ onClose, children }: ModalProps) {
-  // Портал-таргет: якщо в тебе є окремий div#modal-root — використай його.
-  // Якщо немає — безпечно падаємо на document.body.
   const portalTarget =
     typeof document !== "undefined"
       ? document.getElementById("modal-root") ?? document.body
@@ -25,7 +23,6 @@ export default function Modal({ onClose, children }: ModalProps) {
 
     window.addEventListener("keydown", handleKeyDown);
 
-    // Disable page scroll while modal is open
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
