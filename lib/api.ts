@@ -50,7 +50,6 @@ export async function fetchNotes({
     params,
     headers: getAuthHeaders(),
   });
-console.log(response.data);
 
   return response.data;
 }
@@ -78,30 +77,6 @@ export async function fetchNoteById(id: string): Promise<Note> {
   const response = await axiosInstance.get<Note>(`/notes/${id}`, {
     headers: getAuthHeaders(),
   });
-
-  return response.data;
-}
-
-export async function getCategories({
-  page,
-  perPage,
-  search,
-  tag,
-  sortBy = "created",
-}: FetchNotesParams): Promise<FetchNotesResponse> {
-  const params = {
-    page,
-    perPage,
-    ...(search && search.trim() ? { search: search.trim() } : {}),
-    ...(tag ? { tag } : {}),
-    ...(sortBy ? { sortBy } : {}),
-  };
-
-  const response = await axiosInstance.get<FetchNotesResponse>("/notes", {
-    params,
-    headers: getAuthHeaders(),
-  });
-  console.log(response.data);
 
   return response.data;
 }

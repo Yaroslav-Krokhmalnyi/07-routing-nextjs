@@ -17,7 +17,7 @@ const SidebarNotes = () => {
           All notes
         </Link>
       </li>
-{/* Build navigation based on allowed route tags */}
+      {/* Build navigation based on allowed route tags */}
       {TAGS.map((tag) => {
         return (
           <li className={css.menuItem} key={`${tag}`}>
