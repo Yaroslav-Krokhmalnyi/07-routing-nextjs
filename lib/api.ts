@@ -50,6 +50,7 @@ export async function fetchNotes({
     params,
     headers: getAuthHeaders(),
   });
+console.log(response.data);
 
   return response.data;
 }
@@ -92,9 +93,16 @@ export const getNotes = async (categoryId?: string) => {
 };
 
 export const getCategories = async () => {
-  const res = await axiosInstance.get<NoteTag[]>("/categories", {
-    headers: getAuthHeaders(),
-  });
-  return res.data;
+  const res = await fetchNotes({
+  page: 2,
+  perPage: 10,
+  search: 'the',
+  tag: 'Todo',
+  sortBy: "created"});
+  console.log(res);
+  
+  return res;
 };
+
+
 

@@ -8,6 +8,8 @@ import { getCategories } from "@/lib/api";
 
 const NotesSidebar = async () => {
   const categories = await getCategories();
+
+  
   return (
     <ul className={css.menuList}>
       {/* список тегів */}
@@ -17,14 +19,14 @@ const NotesSidebar = async () => {
           All notes
         </Link>
       </li>
-      {categories.map((category) => (
-        <li key={category.id} className={css.menuItem}>
+      {/* {categories.map((tag) => (
+        <li key={tag} className={css.menuItem}>
           Назва тегу
-          <Link href={`/notes/filter/${category.id}`} className={css.menuLink}>
-            {category.name}
+          <Link href={`/notes/filter/${tag}`} className={css.menuLink}>
+            {tag}
           </Link>
         </li>
-      ))}
+      ))} */}
     </ul>
   );
 };
