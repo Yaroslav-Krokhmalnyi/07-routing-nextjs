@@ -1,3 +1,5 @@
+// components/Header/Header.tsx
+
 "use client";
 
 import Link from "next/link";
@@ -6,20 +8,20 @@ import css from "./Header.module.css";
 export default function Header() {
   return (
     <header className={css.header}>
-      <div className={css.nav}>
-        <Link href="/" aria-label="Home" className={css.link}>
+      <div>
+        <Link href="/" aria-label="Home" className={css.headerLink}>
           NoteHub
         </Link>
 
         <nav aria-label="Main Navigation">
-          <ul className={css.list}>
-            <li>
-              <Link href="/" className={css.link}>
+          <ul className={css.navigation}>
+            <li className={css.navigationItem}>
+              <Link href="/" className={css.navigationLink}>
                 Home
               </Link>
             </li>
-            <li>
-              <Link href="/notes/filter/all" className={css.link}>
+            <li className={css.navigationItem}>
+              <Link href="/notes/filter/all" className={css.navigationLink}>
                 Notes
               </Link>
             </li>

@@ -8,13 +8,13 @@ export default function Footer() {
 
   return (
     <footer className={css.footer}>
-      <div className={css.content}>
+      <div className={css.wrap}>
         <p className={css.text}>© {year} NoteHub. All rights reserved.</p>
 
         <div className={css.wrap}>
-          <p className={css.text}>Developer: Yaroslav Krokhmalnyi</p>
+          <p>Developer: Yaroslav Krokhmalnyi</p>
 
-          <p className={css.text}>
+          <p>
             Contact us:{" "}
             <Link className={css.link} href="mailto:krokhmalniy.code@gmail.com">
               krokhmalniy.code@gmail.com

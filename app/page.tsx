@@ -1,4 +1,7 @@
-import css from "./HomePage.module.css";
+// app/page.tsx
+
+// Styles
+import css from "./Home.module.css";
 
 export default function HomePage() {
   return (
