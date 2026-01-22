@@ -1,14 +1,29 @@
 // app/notes/filter/(.)notes/[id]/page.tsx
 
+import { fetchNoteById } from '@/lib/api'
+import { notFound } from 'next/navigation'
+import ModalNoteClient from "@/components/ModalNoteClient/ModalNoteClient";
+import NotePreview from '@/components/NotePreview/NotePreview'
 interface ModalNotePageProps {
   params: {
     id: string;
   };
 }
 
-const ModalNotePage = ({ params }: ModalNotePageProps) => {
+const ModalNotePage = async ({ params }: ModalNotePageProps) => {
   const { id } = params;
-  return <div>Modal route works: {id}</div>;
-};
+
+const modalData = await fetchNoteById(id);
+
+  if (!modalData) {
+    return notFound();
+  } else {
+    return (
+      <ModalNoteClient>
+        <NotePreview note={modalData} />
+      </ModalNoteClient>
+    );
+  } 
+}
 
 export default ModalNotePage;
