@@ -1,4 +1,9 @@
+// app/layout.tsx
+
+//Styles
 import "./globals.css";
+
+// Components
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
@@ -19,7 +24,6 @@ export default function RootLayout({
         <TanStackProvider>
           <Header />
           {children}
-          {/* Portal для модалки */}
           <div id="modal-root"></div>
           <Footer />
         </TanStackProvider>

@@ -1,10 +1,15 @@
+// components/Modal/Modal.tsx
+
 "use client";
 
+// Styles
+import css from "./Modal.module.css";
+
+// React components
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
 
-import css from "./Modal.module.css";
-
+// Types
 interface ModalProps {
   onClose: () => void;
   children: React.ReactNode;
@@ -13,7 +18,7 @@ interface ModalProps {
 export default function Modal({ onClose, children }: ModalProps) {
   const portalTarget =
     typeof document !== "undefined"
-      ? document.getElementById("modal-root") ?? document.body
+      ? (document.getElementById("modal-root") ?? document.body)
       : null;
 
   useEffect(() => {
@@ -45,6 +50,6 @@ export default function Modal({ onClose, children }: ModalProps) {
         {children}
       </div>
     </div>,
-    portalTarget
+    portalTarget,
   );
 }

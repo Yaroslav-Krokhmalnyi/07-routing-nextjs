@@ -5,7 +5,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-import css from './HomePage.module.css'
+import css from './Home.module.css'
 
 const NotFound = () => {
   const router = useRouter();

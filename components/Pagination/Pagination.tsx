@@ -1,8 +1,14 @@
+// components/Pagination/Pagination.tsx
+
 "use client";
 
-import ReactPaginate from "react-paginate";
+// Styles
 import css from "./Pagination.module.css";
 
+// React components
+import ReactPaginate from "react-paginate";
+
+// Types
 interface PaginationProps {
   page: number; // 1-based
   totalPages: number;
@@ -15,7 +21,7 @@ export default function Pagination({
   onPageChange,
 }: PaginationProps) {
   return (
-    <div className={css.wrapper}>
+    <div className={css.pagination}>
       <ReactPaginate
         pageCount={totalPages}
         forcePage={Math.max(0, page - 1)} // ReactPaginate uses 0-based

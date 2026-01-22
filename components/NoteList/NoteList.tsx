@@ -1,12 +1,20 @@
+// components/NoteList/NoteList.tsx
+
 "use client";
 
-import Link from "next/link";
+// Styles
+import css from "./NoteList.module.css";
+
+// React components
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { deleteNote } from "@/lib/api";
-import type { Note } from "@/types/note";
+// Next.js components
+import Link from "next/link";
 
-import css from "./NoteList.module.css";
+import { deleteNote } from "@/lib/api";
+
+// Types
+import type { Note } from "@/types/note";
 
 interface NoteListProps {
   notes: Note[];
@@ -25,14 +33,14 @@ export default function NoteList({ notes }: NoteListProps) {
   return (
     <ul className={css.list}>
       {notes.map((note) => (
-        <li key={note.id} className={css.item}>
-          <div className={css.content}>
+        <li key={note.id} className={css.listItem}>
+          <div>
             <h2 className={css.title}>{note.title}</h2>
-            <p className={css.text}>{note.content}</p>
-            <p className={css.tag}>{note.tag}</p>
+            <p className={css.content}>{note.content}</p>
           </div>
 
-          <div className={css.actions}>
+          <div className={css.footer}>
+            <span className={css.tag}>{note.tag}</span>
             <Link className={css.link} href={`/notes/${note.id}`}>
               View details
             </Link>
