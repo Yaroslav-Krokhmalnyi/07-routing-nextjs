@@ -20,10 +20,10 @@ const modalData = await fetchNoteById(id);
   } else {
     return (
       <ModalNoteClient>
-        <NotePreview note={modalData} />
+        <NotePreview note={modalData} onBack={() => {} } />
       </ModalNoteClient>
     );
-  } 
+  }
 }
 
 export default ModalNotePage;
