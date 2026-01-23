@@ -1,55 +1,82 @@
-// components/Modal/Modal.tsx
+// // components/Modal/Modal.tsx
+
+// "use client";
+
+// // Styles
+// import css from "./Modal.module.css";
+
+// // React components
+// import { useEffect } from "react";
+// import { createPortal } from "react-dom";
+
+// // Types
+// interface ModalProps {
+//   onClose: () => void;
+//   children: React.ReactNode;
+// }
+
+// export default function Modal({ onClose, children }: ModalProps) {
+//   const portalTarget =
+//     typeof document !== "undefined"
+//       ? (document.getElementById("modal-root") ?? document.body)
+//       : null;
+
+//   useEffect(() => {
+//     const handleKeyDown = (event: KeyboardEvent) => {
+//       if (event.key === "Escape") onClose();
+//     };
+
+//     window.addEventListener("keydown", handleKeyDown);
+
+//     const previousOverflow = document.body.style.overflow;
+//     document.body.style.overflow = "hidden";
+
+//     return () => {
+//       window.removeEventListener("keydown", handleKeyDown);
+//       document.body.style.overflow = previousOverflow;
+//     };
+//   }, [onClose]);
+
+//   if (!portalTarget) return null;
+
+//   return createPortal(
+//     <div
+//       className={css.backdrop}
+//       onClick={onClose}
+//       role="dialog"
+//       aria-modal="true"
+//     >
+//       <div className={css.modal} onClick={(e) => e.stopPropagation()}>
+//         {children}
+//       </div>
+//     </div>,
+//     portalTarget,
+//   );
+// }
+
 
 "use client";
 
-// Styles
+import { useRouter } from "next/navigation";
 import css from "./Modal.module.css";
 
-// React components
-import { useEffect } from "react";
-import { createPortal } from "react-dom";
-
-// Types
-interface ModalProps {
-  onClose: () => void;
+type Props = {
   children: React.ReactNode;
-}
+};
 
-export default function Modal({ onClose, children }: ModalProps) {
-  const portalTarget =
-    typeof document !== "undefined"
-      ? (document.getElementById("modal-root") ?? document.body)
-      : null;
+const Modal = ({ children }: Props) => {
+  const router = useRouter();
 
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
-    };
+  const close = () => router.back();
 
-    window.addEventListener("keydown", handleKeyDown);
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [onClose]);
-
-  if (!portalTarget) return null;
-
-  return createPortal(
-    <div
-      className={css.backdrop}
-      onClick={onClose}
-      role="dialog"
-      aria-modal="true"
-    >
-      <div className={css.modal} onClick={(e) => e.stopPropagation()}>
+  return (
+    <div className={css.backdrop}>
+      <div className={css.modal}>
         {children}
+        <button onClick={close}>Close</button>
       </div>
-    </div>,
-    portalTarget,
+    </div>
   );
-}
+};
+
+export default Modal;
