@@ -1,14 +1,10 @@
-.input {
-  width: 100%;
-  padding: 10px 14px;
-  font-size: 14px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  outline: none;
-}
+/* components/SearchBox/SearchBox.module.css */
 
-.input:focus {
-  border-color: #3b4cca;
+.input {
+  flex: 1;
+  max-width: 240px;
+  padding: 6px 12px;
+  font-size: 16px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
 }

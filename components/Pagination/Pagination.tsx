@@ -10,9 +10,9 @@ import ReactPaginate from "react-paginate";
 
 // Types
 interface PaginationProps {
-  page: number; // 1-based
+  page: number;
   totalPages: number;
-  onPageChange: (page: number) => void; // 1-based
+  onPageChange: (page: number) => void; 
 }
 
 export default function Pagination({
@@ -21,22 +21,15 @@ export default function Pagination({
   onPageChange,
 }: PaginationProps) {
   return (
-    <div className={css.pagination}>
-      <ReactPaginate
-        pageCount={totalPages}
-        forcePage={Math.max(0, page - 1)} // ReactPaginate uses 0-based
-        onPageChange={({ selected }) => onPageChange(selected + 1)}
-        previousLabel="←"
-        nextLabel="→"
-        breakLabel="..."
-        containerClassName={css.container}
-        pageClassName={css.page}
-        pageLinkClassName={css.pageLink}
-        activeClassName={css.active}
-        previousClassName={css.nav}
-        nextClassName={css.nav}
-        disabledClassName={css.disabled}
-      />
-    </div>
+    <ReactPaginate
+      pageCount={totalPages}
+      forcePage={Math.max(0, page - 1)}
+      onPageChange={({ selected }) => onPageChange(selected + 1)}
+      previousLabel="←"
+      nextLabel="→"
+      breakLabel="..."
+      containerClassName={css.pagination}
+      activeClassName={css.active}
+    />
   );
 }
