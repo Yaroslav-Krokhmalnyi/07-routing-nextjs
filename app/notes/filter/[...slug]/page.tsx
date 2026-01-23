@@ -3,39 +3,40 @@
 // Constants
 import TAGS from "@/constants/noteTags";
 
-
 // Next.js
-import Link from "next/link";
-
 import { notFound } from "next/navigation";
+
+// Components
+import NotesPageClient from "./NotesPageClient";
+
+// Types
 import type { NoteTag } from "@/types/note";
 
 interface NotesByCategoryParams {
-  slug: string[],
+  slug: string[];
 }
 
-const NotesByCategory = async ({ params }: { params: Promise<NotesByCategoryParams> }) => {
-   const { slug } = await params;
-   const filter = slug[0];
+const NotesByCategory = async ({
+  params,
+}: {
+  params: Promise<NotesByCategoryParams>;
+}) => {
+  const { slug } = await params;
+  const filter = slug[0];
 
-  // Check if the filter is included NoteTag
   function isNoteTag(value: string): value is NoteTag {
     return TAGS.includes(value as NoteTag);
   }
 
   if (filter === "all") {
-
-  } else if (isNoteTag(filter)) {
-    
-  } else {
-    notFound();
+    return <NotesPageClient />;
   }
-  return (
-    <div>
-      <h1>Notes List</h1>
-      <Link href="/notes/123">Open note 123</Link>;
-    </div>
-  );
+
+  if (isNoteTag(filter)) {
+    return <NotesPageClient tag={filter} />;
+  }
+
+  notFound();
 };
 
 export default NotesByCategory;

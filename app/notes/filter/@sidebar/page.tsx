@@ -1,15 +1,15 @@
 // app/notes/filter/@sidebar/page.tsx
 
+// Styles
+import css from "./SidebarNotes.module.css";
+
 // Next.js
 import Link from "next/link";
 
 // Constants
 import TAGS from "@/constants/noteTags";
 
-// Styles
-import css from "./SidebarNotes.module.css";
-
-const SidebarNotes = () => {
+function SidebarNotes()  {
   return (
     <ul className={css.menuList}>
       <li className={css.menuItem}>
@@ -20,9 +20,9 @@ const SidebarNotes = () => {
       {/* Build navigation based on allowed route tags */}
       {TAGS.map((tag) => {
         return (
-          <li className={css.menuItem} key={`${tag}`}>
+          <li className={css.menuItem} key={tag}>
             <Link href={`/notes/filter/${tag}`} className={css.menuLink}>
-              {`${tag}`}
+              {tag}
             </Link>
           </li>
         );

@@ -1,10 +1,17 @@
+// app/notes/page.tsx
+
+// React components
 import {
   QueryClient,
   dehydrate,
   HydrationBoundary,
 } from "@tanstack/react-query";
-import NotesClient from "./Notes.client";
+
+// API
 import { fetchNotes } from "@/lib/api";
+
+// Components
+import NotesClient from "./Notes.client";
 
 const PER_PAGE = 10;
 

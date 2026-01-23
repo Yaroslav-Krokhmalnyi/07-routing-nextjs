@@ -1,7 +1,11 @@
+// components/SearchBox/SearchBox.tsx
+
 "use client";
 
+// Styles
 import css from "./SearchBox.module.css";
 
+// Types
 interface SearchBoxProps {
   value: string;
   onChange: (value: string) => void;
