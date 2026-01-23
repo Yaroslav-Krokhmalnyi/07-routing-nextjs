@@ -2,13 +2,15 @@
 
 "use client";
 
-import Link from "next/link";
+// Styles
 import css from "./Header.module.css";
+
+// Next.js components
+import Link from "next/link";
 
 export default function Header() {
   return (
     <header className={css.header}>
-      <div>
         <Link href="/" aria-label="Home" className={css.headerLink}>
           NoteHub
         </Link>
@@ -27,7 +29,6 @@ export default function Header() {
             </li>
           </ul>
         </nav>
-      </div>
     </header>
   );
 }
