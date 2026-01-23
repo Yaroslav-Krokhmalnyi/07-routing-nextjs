@@ -1,7 +1,7 @@
 // app/notes/filter/@sidebar/default.tsx
 
-function DefaultSidebar() {
-  return null;
-}
+import SidebarNotes from "./page";
 
-export default DefaultSidebar;
+export default function DefaultSidebar() {
+  return <SidebarNotes />;
+}
