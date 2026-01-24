@@ -1,7 +1,7 @@
 // app/notes/filter/[...slug]/NotesPageClient.tsx
 "use client";
 
-// Styles (можеш використати ті самі стилі, що і для /notes)
+// Styles 
 import css from "@/app/notes/Notes.module.css";
 
 // React
@@ -22,6 +22,7 @@ import NoteList from "@/components/NoteList/NoteList";
 import Pagination from "@/components/Pagination/Pagination";
 import Modal from "@/components/Modal/Modal";
 import NoteForm from "@/components/NoteForm/NoteForm";
+import Loading from '@/app/notes/loading'
 
 // Types
 import type { NoteTag } from "@/types/note";
@@ -62,24 +63,17 @@ export default function NotesPageClient({ tag }: NotesPageClientProps) {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  if (isLoading) return <p>Loading...</p>;
   if (isError || !data) return <p>Something went wrong</p>;
 
   return (
     <div className={css.container}>
+      {isLoading && <Loading />}
       <div className={css.header}>
         <SearchBox value={search} onChange={handleSearchChange} />
         <button type="button" className={css.addButton} onClick={openModal}>
           Add note
         </button>
       </div>
-
-      {data.notes.length > 0 ? (
-        <NoteList notes={data.notes} />
-      ) : (
-        <p>No notes found.</p>
-      )}
-
       {data.totalPages > 1 && (
         <Pagination
           page={page}
@@ -88,8 +82,13 @@ export default function NotesPageClient({ tag }: NotesPageClientProps) {
         />
       )}
 
+      {data.notes.length > 0 ? (
+        <NoteList notes={data.notes} />
+      ) : (
+        <p>No notes found.</p>
+      )}
       {isModalOpen && (
-        <Modal onClose={closeModal}>
+        <Modal>
           <NoteForm
             onCancel={closeModal}
             onCreated={() => {
