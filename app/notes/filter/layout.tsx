@@ -7,7 +7,6 @@ import css from '@/app/notes/filter/LayoutNotes.module.css'
 type NotesLayoutProps = {
   children: React.ReactNode;
   sidebar: React.ReactNode;
-  modal: React.ReactNode;
 };
 
 const NotesLayout = ({ children, sidebar }: NotesLayoutProps) => {
