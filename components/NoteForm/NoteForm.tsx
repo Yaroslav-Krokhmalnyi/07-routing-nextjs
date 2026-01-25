@@ -72,66 +72,60 @@ export default function NoteForm({ onCancel, onCreated }: NoteFormProps) {
     >
       {({ isSubmitting }) => (
         <Form className={css.form}>
-          <h2>Create note</h2>
           <div className={css.formGroup}>
-            <label>
-              Title
-              <Field className={css.input} type="text" name="title" />
-              <ErrorMessage
-                name="title"
-                component="span"
-                className={css.error}
-              />
-            </label>
+            <label htmlFor="title">Title</label>
+            <Field id="title" type="text" name="title" className={css.input} />
+            <ErrorMessage name="title" component="span" className={css.error} />
+          </div>
 
-            <label>
-              Content
-              <Field
-                className={css.textarea}
-                as="textarea"
-                name="content"
-                rows={5}
-              />
-              <ErrorMessage
-                name="content"
-                component="span"
-                className={css.error}
-              />
-            </label>
+          <div className={css.formGroup}>
+            <label htmlFor="content">Content</label>
+            <Field
+              as="textarea"
+              id="content"
+              name="content"
+              rows={8}
+              className={css.textarea}
+            />
+            <ErrorMessage
+              component="span"
+              name="content"
+              className={css.error}
+            />
+          </div>
 
-            <label>
-              Tag
-              <Field className={css.select} as="select" name="tag">
-                {TAGS.map((tag) => (
-                  <option key={tag} value={tag}>
-                    {tag}
-                  </option>
-                ))}
-              </Field>
-              <ErrorMessage name="tag" component="span" className={css.error} />
-            </label>
+          <div className={css.formGroup}>
+            <label htmlFor="tag">Tag</label>
+            <Field as="select" id="tag" name="tag" className={css.select}>
+              {TAGS.map((tag) => (
+                <option key={tag} value={tag}>
+                  {tag}
+                </option>
+              ))}
+            </Field>
+            <ErrorMessage component="span" name="tag" className={css.error} />
+          </div>
 
-            {mutation.isError && (
-              <p className={css.error}>Something went wrong.</p>
-            )}
+          {mutation.isError && (
+            <p className={css.error}>Something went wrong.</p>
+          )}
 
-            <div className={css.actions}>
-              <button
-                type="submit"
-                className={css.submitButton}
-                disabled={isSubmitting || mutation.isPending}
-              >
-                Create
-              </button>
+          <div className={css.actions}>
+            <button
+              type="button"
+              className={css.cancelButton}
+              onClick={onCancel}
+            >
+              Cancel
+            </button>
 
-              <button
-                type="button"
-                className={css.cancelButton}
-                onClick={onCancel}
-              >
-                Cancel
-              </button>
-            </div>
+            <button
+              type="submit"
+              className={css.submitButton}
+              disabled={isSubmitting || mutation.isPending}
+            >
+              Create note
+            </button>
           </div>
         </Form>
       )}

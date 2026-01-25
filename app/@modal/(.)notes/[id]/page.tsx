@@ -3,7 +3,6 @@
 // Styles
 import css from './NotePreview.module.css';
 
-
 // API
 import { fetchNoteById } from "@/lib/api";
 
@@ -11,16 +10,16 @@ import { fetchNoteById } from "@/lib/api";
 import Modal from "@/components/Modal/Modal";
 
 // Types
-type Props = {
+type NotePreviewProps = {
   params: Promise<{ id: string }>;
 };
 
-const NotePreview = async ({ params }: Props) => {
+const NotePreview = async ({ params }: NotePreviewProps) => {
   const { id } = await params;
   const note = await fetchNoteById(id);
 
-    const createDate = new Date(note.createdAt).toLocaleDateString();
-    const updateDate = new Date(note.updatedAt).toLocaleDateString();
+  const createDate = new Date(note.createdAt).toLocaleDateString();
+  const updateDate = new Date(note.updatedAt).toLocaleDateString();
 
   return (
     <Modal>
@@ -32,8 +31,8 @@ const NotePreview = async ({ params }: Props) => {
           </div>
           <p className={css.content}>{note.content}</p>
           <p
-          className={css.date}
-        >{`Create date: ${createDate} | Update date: ${updateDate}`}</p>
+            className={css.date}
+          >{`Create date: ${createDate} | Update date: ${updateDate}`}</p>
         </div>
       </div>
     </Modal>

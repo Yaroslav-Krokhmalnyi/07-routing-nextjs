@@ -86,7 +86,7 @@ export default function NotesClient({ searchQuery }: NotesClientProps) {
       )}
 
       {isModalOpen && (
-        <Modal onClose={closeModal}>
+        <Modal>
           <NoteForm
             onCancel={closeModal}
             onCreated={() => {
