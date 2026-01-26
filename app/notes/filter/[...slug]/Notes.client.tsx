@@ -2,7 +2,7 @@
 "use client";
 
 // Styles 
-import css from "@/app/notes/Notes.module.css";
+import css from "@/app/notes/filter/[...slug]/NotesPage.module.css";
 
 // React
 import { useState } from "react";
@@ -22,8 +22,7 @@ import NoteList from "@/components/NoteList/NoteList";
 import Pagination from "@/components/Pagination/Pagination";
 import Modal from "@/components/Modal/Modal";
 import NoteForm from "@/components/NoteForm/NoteForm";
-import Loading from '@/app/notes/loading'
-import NotesError from '@/app/notes/filter/[...slug]/error'
+import Loading from '@/app/notes/filter/[...slug]/loading'
 
 // Types
 import type { NoteTag } from "@/types/note";
@@ -64,7 +63,7 @@ export default function NotesPageClient({ tag }: NotesPageClientProps) {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  if (isError || !data) return <p>{NotesError}</p>;
+  if (isError || !data) return <p>Something went wrong</p>;
 
   return (
     <div className={css.container}>
