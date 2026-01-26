@@ -64,7 +64,7 @@ export default function NotesPageClient({ tag }: NotesPageClientProps) {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  if (isError || !data) return <p>{NotesError}</p>;
+  if (isError || !data) return <p>{isError}</p>;
 
   return (
     <div className={css.container}>
