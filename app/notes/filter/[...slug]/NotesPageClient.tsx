@@ -23,6 +23,7 @@ import Pagination from "@/components/Pagination/Pagination";
 import Modal from "@/components/Modal/Modal";
 import NoteForm from "@/components/NoteForm/NoteForm";
 import Loading from '@/app/notes/loading'
+import NotesError from '@/app/notes/filter/[...slug]/error'
 
 // Types
 import type { NoteTag } from "@/types/note";
@@ -63,7 +64,7 @@ export default function NotesPageClient({ tag }: NotesPageClientProps) {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  if (isError || !data) return <p>Something went wrong</p>;
+  if (isError || !data) return <p>{NotesError}</p>;
 
   return (
     <div className={css.container}>
