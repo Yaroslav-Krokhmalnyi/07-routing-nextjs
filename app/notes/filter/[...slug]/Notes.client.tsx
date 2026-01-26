@@ -2,7 +2,7 @@
 "use client";
 
 // Styles 
-import css from "@/app/notes/filter/[...slug]/NotesPage.module.css";
+import css from "@/app/notes/filter/[...slug]/Notes.module.css";
 
 // React
 import { useState } from "react";
@@ -71,7 +71,7 @@ export default function NotesPageClient({ tag }: NotesPageClientProps) {
       <div className={css.header}>
         <SearchBox value={search} onChange={handleSearchChange} />
         <button type="button" className={css.addButton} onClick={openModal}>
-          Add note
+          Add note +
         </button>
       </div>
       {data.totalPages > 1 && (

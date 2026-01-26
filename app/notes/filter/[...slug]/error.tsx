@@ -1,3 +1,5 @@
+// app/notes/filter/[...slug]/error.tsx
+
 "use client";
 
 export default function NotesError({
