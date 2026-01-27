@@ -1,7 +1,7 @@
 // app/@modal/default.tsx
 
-function paralelModal() {
+function ParallelModal() {
     return null;
 }
 
-export default paralelModal;
+export default ParallelModal;
