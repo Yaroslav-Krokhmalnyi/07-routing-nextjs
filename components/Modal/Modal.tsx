@@ -2,27 +2,52 @@
 
 "use client";
 
-import { useRouter } from "next/navigation";
+// Styles
 import css from "./Modal.module.css";
 
+// React components
+import { createPortal } from "react-dom";
+import { useEffect } from 'react';
+
+// Types
 type ModalProps = {
   children: React.ReactNode;
+  closeModal: () => void;
 };
 
-const Modal = ({ children }: ModalProps) => {
-  const router = useRouter();
+const Modal = ({ children, closeModal }: ModalProps) => {
 
-  const close = () => router.back();
+// Сlose when clicking on backdrop
+const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (event.target === event.currentTarget) {
+      closeModal();
+    }
+  };
 
-  return (
-    <div className={css.backdrop} role="dialog" aria-modal="true">
+// Close when clicking on esc
+  useEffect(() => {
+	  const handleKeyDown = (e: KeyboardEvent) => {
+	    if (e.key === "Escape") {
+	      closeModal();
+	    }
+	  };
+	
+	  document.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+	
+	  return () => {
+	    document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+	  };
+	}, [closeModal]);
+
+  return createPortal(
+    <div className={css.backdrop} role="dialog" aria-modal="true" onClick={handleBackdropClick}>
       <div className={css.modal}>
         {children}
-        <button className={css.closeButton} onClick={close}>
-          Close
-        </button>
       </div>
-    </div>
+    </div>, 
+    document.body
   );
 };
 

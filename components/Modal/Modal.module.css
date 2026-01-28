@@ -22,20 +22,3 @@
   position: relative;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
-
-/* My styles */
-
-.closeButton {
-    padding: 8px 16px;
-    font-size: 16px;
-    background-color: #f8f9fa;
-    color: #212529;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .closeButton:hover {
-    background-color: #e2e6ea;
-  }
