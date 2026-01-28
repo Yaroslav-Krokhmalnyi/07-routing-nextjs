@@ -1,9 +1,19 @@
+//app/notes/[id]/error.tsx
+
 "use client";
 
-export default function NoteDetailsError({
-  error,
-}: {
-  error: Error & { digest?: string };
-}) {
-  return <p>Could not fetch note details. {error.message}</p>;
+// Types
+type ErrorProps = {
+  error: Error;
+};
+
+const Error = ({ error }: ErrorProps) => {
+  return (
+    <div>
+      <h2>Помилка при завантаженні</h2>
+      <p>{error.message}</p>
+    </div>
+  );
 }
+
+export default Error;

@@ -88,7 +88,7 @@ export default function NotesPageClient({ tag }: NotesPageClientProps) {
         <p>No notes found.</p>
       )}
       {isModalOpen && (
-        <Modal>
+        <Modal closeModal={closeModal}>
           <NoteForm
             onCancel={closeModal}
             onCreated={() => {
