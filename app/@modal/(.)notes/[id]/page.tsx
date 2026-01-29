@@ -1,4 +1,6 @@
-// app/@modal/(.)notes/[id]/page.tsx
+// Liberis
+import { QueryClient, HydrationBoundary,
+  dehydrate, } from "@tanstack/react-query";
 
 // Styles
 import css from './NotePreview.module.css';
@@ -7,7 +9,7 @@ import css from './NotePreview.module.css';
 import { fetchNoteById } from "@/lib/api";
 
 //Components
-import NotePreviewClient from '@/app/@modal/(.)notes/[id]/NotePreview.client'
+import NotePreviewClient from "./NotePreview.client";
 
 // Types
 type NotePreviewProps = {
@@ -16,11 +18,17 @@ type NotePreviewProps = {
 
 const NotePreview = async ({ params }: NotePreviewProps) => {
   const { id } = await params;
-  const note = await fetchNoteById(id);
+  const queryClient = new QueryClient();
 
-  return (
-    <NotePreviewClient note={note}/>
-  );
+  await queryClient.prefetchQuery({
+    queryKey: ["note", id],
+    queryFn: () => fetchNoteById(id),
+  });
+
+  return (<HydrationBoundary state={dehydrate(queryClient)}>
+      <NotePreviewClient />
+    </HydrationBoundary>);
 };
 
 export default NotePreview;
+

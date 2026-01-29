@@ -1,18 +1,44 @@
-// app/@modal/(.)notes/[id]/ç.tsx
 "use client";
 
+// Liberis
+import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import Modal from "@/components/Modal/Modal";
+import { useParams } from 'next/navigation';
+
+// Styles
 import css from "./NotePreview.module.css";
-import type { Note } from "@/types/note";
 
-interface NotePreviewClientProps {
-  note: Note;
-}
+// API
+import { fetchNoteById } from "@/lib/api";
 
-const NotePreviewClient = ({ note }: NotePreviewClientProps) => {
+//Components
+import Modal from "@/components/Modal/Modal";
+
+// Types
+type ErrorProps = {
+  error: Error;
+};
+
+const NotePreviewClient = () => {
+	const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const handleClose = () => router.back();
+  
+
+  const { data: note, isLoading, error } = useQuery({
+    queryKey: ["note", id],
+    queryFn: () => fetchNoteById(id),
+    refetchOnMount: false,
+  });
+
+  if (isLoading) return <p>Loading, please wait...</p>;
+  if (error instanceof Error || !note) {
+  return <p>Something went wrong.</p>; 
+}
+
+  const formattedDate = note.updatedAt
+    ? `Updated at: ${new Date(note.updatedAt).toLocaleDateString()}`
+    : `Created at: ${new Date(note.createdAt).toLocaleDateString()}}`;
 
   return (
     <Modal closeModal={handleClose}>
@@ -23,10 +49,7 @@ const NotePreviewClient = ({ note }: NotePreviewClientProps) => {
             <p className={css.tag}>{note.tag}</p>
           </div>
           <p className={css.content}>{note.content}</p>
-          <p className={css.date}>
-            Create date: {new Date(note.createdAt).toLocaleDateString()} |{" "}
-            Update date: {new Date(note.updatedAt).toLocaleDateString()}
-          </p>
+          <p className={css.date}>{formattedDate}</p>
         </div>
         <button type="button" className={css.backBtn} onClick={handleClose}>Back</button>
       </div>
