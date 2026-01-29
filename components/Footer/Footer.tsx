@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <footer className={css.footer}>
       <div className={css.wrap}>
-        <p className={css.text}>© {year} NoteHub. All rights reserved.</p>
+        <p>© {year} NoteHub. All rights reserved.</p>
 
         <div className={css.wrap}>
           <p>Developer: Yaroslav Krokhmalnyi</p>
