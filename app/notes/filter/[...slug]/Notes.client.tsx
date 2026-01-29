@@ -67,20 +67,25 @@ export default function NotesClient({ searchQuery }: NotesClientProps) {
     <div>
       <div>
         <SearchBox value={search} onChange={handleSearchChange} />
-        <button type="button" onClick={openModal}>
-          Add note
-        </button>
-      </div>
 
-      <NoteList notes={data.notes} />
-
-      {data.totalPages > 1 && (
+{data.totalPages > 1 && (
         <Pagination
           page={page}
           totalPages={data.totalPages}
           onPageChange={handlePageChange}
         />
       )}
+
+        <button type="button" onClick={openModal}>
+          Add note
+        </button>
+      </div>
+
+      
+
+      <NoteList notes={data.notes} />
+
+      
 
       {isModalOpen && (
         <Modal closeModal={closeModal}>

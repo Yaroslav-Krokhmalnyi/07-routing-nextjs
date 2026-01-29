@@ -66,21 +66,24 @@ export default function NotesPageClient({ tag }: NotesPageClientProps) {
   if (isError || !data) return <p>{isError}</p>;
 
   return (
-    <div className={css.container}>
+    <div className={css.app}>
       {isLoading && <Loading />}
-      <div className={css.header}>
+      <div className={css.toolbar}>
         <SearchBox value={search} onChange={handleSearchChange} />
-        <button type="button" className={css.button} onClick={openModal}>
-          Add note +
-        </button>
-      </div>
-      {data.totalPages > 1 && (
+
+{data.totalPages > 1 && (
         <Pagination
           page={page}
           totalPages={data.totalPages}
           onPageChange={setPage}
         />
       )}
+
+        <button type="button" className={css.button} onClick={openModal}>
+          Add note +
+        </button>
+      </div>
+      
 
       {data.notes.length > 0 ? (
         <NoteList notes={data.notes} />
